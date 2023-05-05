@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Grid, Input, Spacer, Text } from "@nextui-org/react";
+import { Button, Grid, Input, Spacer, Text, Loading } from "@nextui-org/react";
 import Product from "../components/product";
 import ProductList from "../components/productList";
 
@@ -48,10 +48,11 @@ const Home = () => {
       <h2>Products</h2>
       <div>
         {loading ? (
-          <div>...Data Loading.....</div>
+          <Loading size="xl" />
+
         ) : (
           <div>
-            <ProductList data={products} ></ProductList>
+            <ProductList data={products} />
             <br />
           </div>
         )}

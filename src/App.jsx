@@ -9,7 +9,6 @@ import {
   Navigate,
   Link
 } from "react-router-dom";
-import Home from './pages/home.jsx'
 import {
   NextUIProvider,
   Navbar,
@@ -23,6 +22,11 @@ import {
 } from "@nextui-org/react";
 
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
+
+
+import Home from './pages/home.jsx';
+import Listing from './pages/listing';
+import Cart from './components/cart';
 
 
 function App() {
@@ -46,15 +50,17 @@ function App() {
               objectFit="scale-down"
             />
             <Spacer x={2} />
+
             <Navbar.Link
-              href="/home"
-              isActive={window.location.pathname === "/home"}
+              href="/"
+              isActive={window.location.pathname === "/"}
             >
               Home
             </Navbar.Link>
             <Spacer x={2} />
 
             <Navbar.Link
+
               href="/listing"
               isActive={window.location.pathname === "/listing"}
             >
@@ -62,6 +68,11 @@ function App() {
             </Navbar.Link>
             </Navbar.Brand>
           </Navbar.Content>
+          <Navbar.Content>
+            <Navbar.Item>
+              <Cart/>
+            </Navbar.Item>
+        </Navbar.Content>
         </Navbar>
 
         <Router>
@@ -70,6 +81,11 @@ function App() {
               exact
               path="/"
               element={<Home />}
+            />
+            <Route
+              exact
+              path="/listing"
+              element={<Listing />}
             />
           </Routes>
         </Router>
