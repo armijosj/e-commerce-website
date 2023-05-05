@@ -5,27 +5,34 @@ const Product = (props) => {
 
     return (
         <div>
-            <Card css={{ $$cardColor: "$colors$gradient" }}>
-           
-                <Text h3 color="#ffffff">
-                    {props.data.title}
-                    
-                    {props.data.title}
-                    {props.data.price}
-                    {props.data.category}
-                    {props.data.description}
-                    Rating: {props.data.rating.rate}
-                    {props.data.rating.count}
-                </Text>
+            <Card css={{ p: "$6", w: "400px", h:'400px' }}>
+                <Card.Body >
+                    <Button auto >
+                        {props.data.title}
+                    </Button>
+                    <Text color="grey">
+                        {props.data.category}
+                    </Text>
 
-                <Image
-                    width={100} 
-                    src={props.data.image}
-                    alt="Product Image"
-                    objectFit="scale-down"
-                />
+                    <Text weight="bold">
+                        ${props.data.price}
+                    </Text>
+                        <Image
+                            width='100%' 
+                            src={props.data.image}
+                            alt="Product Image"
+                            objectFit="scale-down"
+                        />
+                </Card.Body>
+
+                <Card.Footer>
+                    <Button auto>
+                        Add to Cart
+                    </Button>
+                </Card.Footer>
+                </Card>
+
                 
-            </Card>
         </div>
       );
     };

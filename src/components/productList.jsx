@@ -11,10 +11,14 @@ const ProductList = (props) => {
 
     return (
         <div>
-
-            {props.data.map((prod) => (
-                    <Product key={prod.id} data={prod}></Product>
-                ))}            
+            <Grid.Container gap={2} justify="center">
+                {props.data.map((prod) => (
+                    <Grid xs={5}>
+                        <Product key={prod.id} data={prod}></Product>
+                    </Grid>
+                ))}   
+            </Grid.Container>
+         
                 
         </div>
       );
