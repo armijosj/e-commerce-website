@@ -27,6 +27,7 @@ import { FaInstagram, FaFacebook } from 'react-icons/fa';
 import Home from './pages/home.jsx';
 import Listing from './pages/listing';
 import Cart from './components/cart';
+import Product from './pages/product';
 
 
 function App() {
@@ -64,7 +65,7 @@ function App() {
               href="/listing"
               isActive={window.location.pathname === "/listing"}
             >
-              Listing
+              Our Products
             </Navbar.Link>
             </Navbar.Brand>
           </Navbar.Content>
@@ -86,6 +87,11 @@ function App() {
               exact
               path="/listing"
               element={<Listing />}
+            />
+            <Route
+              exact
+              path="/product"
+              element={<Product />}
             />
           </Routes>
         </Router>

@@ -1,52 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { Text, Button, Grid, Card, Spacer, Input, Image } from "@nextui-org/react";
+import { Text, Button, Grid, Card, Spacer, Input, Image, Loading } from "@nextui-org/react";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import ProductDetail from "../components/productDetail";
 
 const Product = (props) => {
+    const [searchparams] = useSearchParams();  
+    const [productId] = useState(searchparams.get("id"));
 
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {    
+      fetchProducts();
+    }, [loading]);
+  
+    const fetchProducts = async () =>{
+      await axios
+        .get("https://fakestoreapi.com/products/" + productId.toString())
+        .then(function (response) {
+          if (response.status === 200) {
+            setProduct(response.data);
+            setLoading(false)
+            console.log(product);
+          }
+        })
+        .catch(function (error) {
+            console.log(error);
+            window.alert(error.response.data.message);
+            setLoading(false);
+          });
+    }
+
+    
     return (
         <div>
-            <Card css={{ p: "$6", mw: "400px" }}>
-                <Card.Header>
-                    <Button auto>
-                        {props.data.title}
-                    </Button>
-                </Card.Header>
-                
-                <Card.Body >
-                    <Text color="grey">
-                        {props.data.category}
-                    </Text>
-
-                    <Text weight="bold">
-                        ${props.data.price}
-                    </Text>
-                    
-
-                    <Text >
-                        {props.data.description}
-                    </Text>
-
-                    <Text >
-                        Rating: {props.data.rating.rate} ({props.data.rating.count})
-                    </Text>
-
-                        <Image
-                            width={100} 
-                            src={props.data.image}
-                            alt="Product Image"
-                            objectFit="scale-down"
-                        />
-                </Card.Body>
-
-                <Card.Footer>
-                    <Button auto>
-                        Add to Cart
-                    </Button>
-                </Card.Footer>
-                </Card>
-
-                
+            {loading ? (
+                <Loading size="xl" />
+            ) : (
+                <div>
+                    <ProductDetail data={product}/>
+                </div>
+            )}
         </div>
+        
       );
     };
     
