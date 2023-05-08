@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, Button, Grid, Card, Spacer, Input, Image } from "@nextui-org/react";
 import { createSearchParams, useNavigate } from "react-router-dom";
+import AddToCart from "./addToCart";
 
 const Product = (props) => {
     const navigate = useNavigate();
@@ -38,9 +39,7 @@ const Product = (props) => {
                     </Card.Body>
 
                     <Card.Footer>
-                        <Button auto>
-                            Add to Cart
-                        </Button>
+                        <AddToCart data={props.data}/>
                     </Card.Footer>
                 </Card>
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Grid, Input, Spacer, Text, Loading } from "@nextui-org/react";
 import Product from "../components/product";
-import ProductList from "../components/productList";
 
 const Home = () => {
   
@@ -52,8 +51,11 @@ const Home = () => {
 
         ) : (
           <div>
-            <ProductList data={products} />
-            <br />
+            <Grid.Container gap={3} justify="center">
+                    {products.map((prod) => (
+                            <Product key={prod.id} data={prod}></Product>
+                    ))}
+            </Grid.Container>
           </div>
         )}
 

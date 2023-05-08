@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, Button, Grid, Card, Spacer, Input, Image } from "@nextui-org/react";
-import AddToCart from "./addToCart";
 
-const ProductDetail = (props) => {
+const ProductCart = (props) => {
 
     return (
         <div>
@@ -20,16 +19,13 @@ const ProductDetail = (props) => {
                         ${props.data.price}
                     </Text>
                         <Image
-                            width='100%' 
+                            width='15%' 
                             src={props.data.image}
                             alt="Product Image"
                             objectFit="scale-down"
                         />
                 </Card.Body>
 
-                <Card.Footer>
-                    <AddToCart data={props.data}/>
-                </Card.Footer>
                 </Card>
 
                 
@@ -37,4 +33,4 @@ const ProductDetail = (props) => {
       );
     };
     
-    export default ProductDetail;
+    export default ProductCart;

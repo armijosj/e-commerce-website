@@ -30,8 +30,7 @@ import Cart from './components/cart';
 import Product from './pages/product';
 
 
-function App() {
-
+function App() {  
   return (
     <>
 
