@@ -18,11 +18,11 @@ import {
   Button,
   Grid,
   Image,
-  Spacer
+  Spacer,
+  Row
 } from "@nextui-org/react";
 
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
-
 
 import Home from './pages/home.jsx';
 import Listing from './pages/listing';
@@ -97,27 +97,32 @@ function App() {
       </NextUIProvider>
 
       <footer> 
-        <Grid.Container direction="row" gap={3} justify='center' 
-        css={'position: absolute; bottom: 0;'}>
-          <Grid xs={3}>
-            <Button
-              auto
-              size="md"
-              icon={<FaFacebook />}
-              onClick={() => {
-                window.location.href = "http://facebook.com";
-              }}
-            />
+        <Grid.Container direction="row" gap={3} justify='center' css={'position: absolute; bottom: 0;'}>
+          <Grid xs={2}>
+          <Image
+          src="../assets/Facebook_f_logo.svg"
+          alt="Default Image"
+          width={50}
+          height={50}
+        />
+            <Button  
+            size="md"
+            auto
+            icon={<FaFacebook />}
+            onPress={() => {
+              window.location.href = "http://facebook.com";
+            }}
+          />
           </Grid>
-          
-          <Grid xs={3}>
+          <Grid xs={2}>
+
             <Button
               auto
               bordered 
               color="gradient"
               size="md"
-              icon={<FaInstagram />}
-              onClick={() => {
+              icon={<FaInstagram/>}
+              onPress={() => {
                 window.location.href = "http://instagram.com";
               }}
             />
