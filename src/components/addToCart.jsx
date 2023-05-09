@@ -5,13 +5,23 @@ const AddToCart = (props) => {
     const addToCart = () => {
         let oldCart = JSON.parse(localStorage.getItem("cart"));
         if (oldCart == null) {
-            localStorage.setItem("cart", JSON.stringify( [] ));
             oldCart = [];
+            localStorage.setItem("cart", JSON.stringify( oldCart ));
         }
-        if (props.data in oldCart){
-            console.log("repeated!!")
+
+        let repeated = false;
+        oldCart.forEach(element => {
+            if (element.product.id == props.data.id){
+                element.quantity = Number(element.quantity) + Number(1);
+                repeated = true;
+            }
+        });
+
+        if (!repeated) {
+            let productCart = {"quantity": 1, "product": props.data};
+            localStorage.setItem("cart", JSON.stringify( [...oldCart, productCart]));
         } else {
-            localStorage.setItem("cart", JSON.stringify( [...oldCart, props.data]));
+            localStorage.setItem("cart", JSON.stringify( [...oldCart]));
         }
     }
 

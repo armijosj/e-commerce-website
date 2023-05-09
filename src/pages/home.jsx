@@ -19,7 +19,6 @@ const Home = () => {
         if (response.status === 200) {
           setProducts(response.data);
           setLoading(false)
-          console.log(products);
         }
       })
       .catch(function (error) {

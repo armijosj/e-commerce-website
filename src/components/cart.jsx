@@ -1,27 +1,60 @@
 import React from "react";
-import { Modal, Button, Text, Input, Row, Checkbox, Grid } from "@nextui-org/react";
+import { Modal, Button, Text, Input, Row, Checkbox, Grid, Card, Spacer } from "@nextui-org/react";
 import { FaShoppingCart } from 'react-icons/fa';
 import ProductDetail from "./productDetail";
 import ProductCart from "./productCart";
 
 const Cart = () => {
-    const [visible, setVisible] = React.useState(false);
-    const [myCart, setCart] = React.useState([]);
+  const [visible, setVisible] = React.useState(false);
+  const [myCart, setCart] = React.useState([]);
+  const [totalSum, setSum] = React.useState(0);
 
-    const handler = () => {
-        setVisible(true);
-        setCart(JSON.parse(localStorage.getItem("cart")));
-        if (myCart == null) {
-          localStorage.setItem("cart", JSON.stringify( [] ));
-        }
-        console.log(JSON.parse(localStorage.getItem("cart")));
-    };
-
+  const handler = () => {
+      setVisible(true);
+      setCart(JSON.parse(localStorage.getItem("cart")));
+      if (myCart == null) {
+        localStorage.setItem("cart", JSON.stringify( [] ));
+      }
+  };
 
   const closeHandler = () => {
+    localStorage.setItem("cart", JSON.stringify( [] ));
+    setCart([])
     setVisible(false);
   };
 
+  const removeFromCart = ( elementId ) => {
+    let oldCart = JSON.parse(localStorage.getItem("cart"));
+    const newCart = oldCart.filter(function (element) {
+        return element.product.id != elementId;
+    });
+    localStorage.setItem("cart", JSON.stringify( [...newCart]));
+    setCart(newCart);
+  }
+
+  const calcSum = () => {
+    let sum = Number(0);
+    let oldCart = JSON.parse(localStorage.getItem("cart"));
+    oldCart.forEach(element => {
+        sum = Number(sum) + (Number(element.product.price) * Number(element.quantity));
+    });
+    setSum(sum);
+  }
+
+
+  const updateQuantity = (value, elementId) => {
+    let oldCart = JSON.parse(localStorage.getItem("cart"));
+    oldCart.forEach(element => {
+        if (element.product.id == elementId) {
+            element.quantity = value;
+        }
+    });
+    localStorage.setItem("cart", JSON.stringify( [...oldCart]));
+    setCart(oldCart);
+}
+  React.useEffect(() => {
+    calcSum();
+  }, [myCart]);
 
   return (
     <div>
@@ -29,6 +62,8 @@ const Cart = () => {
         <FaShoppingCart/>
       </Button>
       <Modal
+        scroll
+        width="80%"
         closeButton
         aria-labelledby="modal-title"
         open={visible}
@@ -45,7 +80,29 @@ const Cart = () => {
           ) : (
             <Grid.Container gap={3} justify="center">
               {myCart.map((prod) => (
-                      <ProductCart key={prod.id} data={prod}/>
+                <div key={prod.product.id}>
+                  <Card key={prod.product.id} >
+                    <ProductCart data={prod}/>
+                    <Row justify="flex-end">
+
+                      <Input 
+                      width="25%"
+                      aria-label="Qty"
+                      labelLeft="Qty" 
+                      type="number" 
+                      initialValue={prod.quantity}
+                      min={1}
+                      onBlur={(e) => updateQuantity(e.target.value, prod.product.id)}
+                      />
+                      <Spacer x={2}/>
+
+                      <Button color="error" auto flat onPress={ () => { removeFromCart(prod.product.id);}}>
+                        Remove
+                      </Button>
+                    </Row>
+                  </Card>
+                  <Spacer y={2}/>
+                </div>        
               ))}
             </Grid.Container>
           )
@@ -57,7 +114,7 @@ const Cart = () => {
             Close
           </Button>
           <Button auto onPress={closeHandler}>
-            Checkout
+            Checkout {totalSum.toFixed(2)}
           </Button>
         </Modal.Footer>
       </Modal>
