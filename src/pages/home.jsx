@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Button, Grid, Input, Spacer, Text, Loading } from "@nextui-org/react";
+import { Button, Grid, Input, Spacer, Text, Loading, Card, Col } from "@nextui-org/react";
 import Product from "../components/product";
 
 const Home = () => {
@@ -31,20 +31,31 @@ const Home = () => {
 
   return (
   <div className="sign-in">
-      <h1>e-commerce</h1>
-      <h2>About us</h2>
-      <Grid.Container direction="column">
-          <Text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-          anim id est laborum.
-          </Text>
-          <Spacer />
-      </Grid.Container>
-      <h2>Products</h2>
+         
+        <Spacer y={3}/>    
+        <Card>
+        <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+          <Col>
+            <Text h1 weight="bold" transform="uppercase" color="#ffffffAA">
+              About us
+            </Text>
+            <Text h4 color="white">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A iaculis at erat pellentesque. Ultricies tristique nulla aliquet enim tortor at auctor. Enim tortor at auctor urna nunc id cursus. Ipsum nunc aliquet bibendum enim facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus. Velit laoreet id donec ultrices tincidunt arcu non. Id leo in vitae turpis massa sed elementum tempus. Sed arcu non odio euismod lacinia at quis risus sed. Vel pharetra vel turpis nunc eget lorem dolor sed.            </Text>
+          </Col>
+        </Card.Header>
+        <Card.Image
+          src="https://nextui.org/images/card-example-4.jpeg"
+          objectFit="cover"
+          width="100%"
+          height={340}
+          alt="Card image background"
+        />
+      </Card>
+      <Spacer y={2}/>    
+
+      <Text h1 weight="bold" transform="uppercase" color="#ffffffAA">
+              About us
+      </Text>      
       <div>
         {loading ? (
           <Loading size="xl" />

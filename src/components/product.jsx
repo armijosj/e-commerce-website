@@ -16,13 +16,13 @@ const Product = (props) => {
     return (
         <div>
             <Grid xs={5}>
-                <Card css={{ p: "$6", w: "400px", h:'400px' }}>
-                    <Card.Body >
-                        <Button auto onPress={ () => { 
+                <Card css={{ p: "$6", w: "400px", h:'400px'}}>
+                    <Card.Header as={Button}  css={{justifyContent: "center", textOverflow: "clip"}} onPress={ () => { 
                             productPage();
                             }}>
-                            {props.data.title}
-                        </Button>
+                        {props.data.title}
+                    </Card.Header>
+                    <Card.Body >
                         <Text color="grey">
                             {props.data.category}
                         </Text>

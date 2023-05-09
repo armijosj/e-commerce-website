@@ -18,7 +18,9 @@ import {
   Button,
   Grid,
   Image,
-  Spacer
+  Spacer, 
+  Container, 
+  Row
 } from "@nextui-org/react";
 
 import { FaInstagram, FaFacebook } from 'react-icons/fa';
@@ -96,37 +98,33 @@ function App() {
         </Router>
       </NextUIProvider>
 
-      <footer> 
-        <Grid.Container direction="row" gap={3} justify='center' 
-        css={'position: absolute; bottom: 0;'}>
-          <Grid xs={3}>
-            <Button
-              auto
-              size="md"
-              icon={<FaFacebook />}
-              onClick={() => {
-                window.location.href = "http://facebook.com";
-              }}
-            />
-          </Grid>
-          
-          <Grid xs={3}>
-            <Button
-              auto
-              bordered 
-              color="gradient"
-              size="md"
-              icon={<FaInstagram />}
-              onClick={() => {
-                window.location.href = "http://instagram.com";
-              }}
-            />
-          </Grid>
-        </Grid.Container>
+      <footer>
+      <Spacer y={3}/>
+      <div style={{position: 'absolute', bottom: 0, left: "43%"}}>
+        <Row>
+          <Button
+            auto
+            size="md"
+            icon={<FaFacebook />}
+            onClick={() => {
+              window.location.href = "http://facebook.com";
+            }}
+          />
+          <Spacer x={3}/>
+          <Button
+            auto
+            bordered 
+            size="md"
+            color="gradient"
+            icon={<FaInstagram />}
+            onPress={() => {
+              window.location.href = "http://instagram.com";
+            }}
+          />
+        </Row>
+      </div>
       </footer>
-
     </>
-
   )
 }
 

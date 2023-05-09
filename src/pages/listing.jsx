@@ -40,7 +40,7 @@ const Listing = () => {
           <div>
             <Grid.Container gap={3} justify="center">
               {products.map((prod) => (
-                      <Product key={prod.id} data={prod}/>
+                <Product key={prod.id} data={prod}/>
               ))}
             </Grid.Container>
           </div>
