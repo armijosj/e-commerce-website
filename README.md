@@ -41,3 +41,5 @@ Then, on a separate terminal run:
 ``` 
 npm test
 ```
+
+**NOTE:** Manual testing was predominantly utilized.

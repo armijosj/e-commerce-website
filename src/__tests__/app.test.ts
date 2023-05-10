@@ -9,16 +9,18 @@ describe("App.js", () => {
     page = await browser.newPage();
   });
 
-  it("navigates to the about page", async () => {
+  it("navigates to the home page", async () => {
     await page.goto("http://localhost:4173");
-
-
-    // await page.waitForSelector(".App-welcome-text");
-    // await page.click("#about-page-link");
-    // await page.waitForSelector(".App-welcome-text");
-    // const text = await page.$eval(".App-welcome-text", (e) => e.textContent);
-
-    expect("Hello").toContain("Hello");
   });
+
+  it("navigates to the listing page", async () => {
+    await page.goto("http://localhost:4173/listing");
+  });
+
+  it("navigates to the detail product page of id: 1", async () => {
+    await page.goto("http://localhost:4173/product?id=1");
+
+  });
+
   afterAll(() => browser.close());
 });
