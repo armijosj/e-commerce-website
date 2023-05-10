@@ -6,8 +6,10 @@ import ProductCart from "./productCart";
 
 const Cart = () => {
   const [visible, setVisible] = React.useState(false);
-  const [myCart, setCart] = React.useState([]);
+  const [myCart, setCart] = React.useState(null);
   const [totalSum, setSum] = React.useState(0);
+  const [checkout, setCheckout] = React.useState(false);
+
 
   const handler = () => {
       setVisible(true);
@@ -18,10 +20,15 @@ const Cart = () => {
   };
 
   const closeHandler = () => {
-    localStorage.setItem("cart", JSON.stringify( [] ));
-    setCart([])
     setVisible(false);
+    setCheckout(false)
   };
+
+  const checkoutHandler = () => {
+    localStorage.setItem("cart", JSON.stringify( [] ));
+    setCart([]);
+    setCheckout(true)
+  }
 
   const removeFromCart = ( elementId ) => {
     let oldCart = JSON.parse(localStorage.getItem("cart"));
@@ -53,6 +60,9 @@ const Cart = () => {
     setCart(oldCart);
 }
   React.useEffect(() => {
+    if (JSON.parse(localStorage.getItem("cart")) == null) {
+        localStorage.setItem("cart", JSON.stringify( [] ));
+    }
     calcSum();
   }, [myCart]);
 
@@ -70,14 +80,14 @@ const Cart = () => {
         onClose={closeHandler}
       >
         <Modal.Header>
-          <Text id="modal-title" b size={18}>
+          <Text id="modal-title" b size={20}>
             Your Cart
           </Text>
         </Modal.Header>
         <Modal.Body>
           {myCart == null  ? (
-            <Text>No items</Text>
-          ) : (
+            <Text>You don't have any items in cart yet.</Text>
+          ) : (            
             <Grid.Container gap={3} justify="center">
               {myCart.map((prod) => (
                 <div key={prod.product.id}>
@@ -113,9 +123,30 @@ const Cart = () => {
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>
-          <Button auto onPress={closeHandler}>
-            Checkout {totalSum.toFixed(2)}
+          <Button auto onPress={checkoutHandler}>
+            Checkout ${totalSum.toFixed(2)}
           </Button>
+
+
+          <Modal
+            width="20%"
+            closeButton
+            aria-labelledby="modal-title"
+            open={checkout}
+            onClose={closeHandler}
+          >
+            <Modal.Header>
+              <Text id="modal-title" b size={18}>
+                You are all set!
+              </Text>
+            </Modal.Header>
+            <Modal.Body>
+              <Text id="modal-title" size={14}>
+                Your purchase was successful.
+              </Text>
+            </Modal.Body>
+
+          </Modal>
         </Modal.Footer>
       </Modal>
     </div>

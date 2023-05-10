@@ -7,8 +7,8 @@ const ProductCart = (props) => {
         <div>
             <Row>
                 <Image
-                    css={{maxHeight:"20%", maxWidth:"20%"}}
-                    //width={"20%"}
+                    //css={{maxHeight:"20%", maxWidth:"20%"}}
+                    width={"100px"}
                     src={props.data.product.image}
                     alt="Product Image"
                     objectFit="scale-down"

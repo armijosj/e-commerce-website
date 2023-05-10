@@ -52,8 +52,8 @@ const Home = () => {
       </Card>
       <Spacer y={2}/>    
 
-      <Text h1 weight="bold" transform="uppercase" color="#ffffffAA">
-              About us
+      <Text h2 weight="bold" transform="uppercase">
+        Our top items
       </Text>      
       <div>
         {loading ? (

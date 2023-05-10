@@ -31,8 +31,9 @@ const Listing = () => {
 
   return (
   <div className="sign-in">
-      <h1>e-commerce</h1>
-      <h2>Products</h2>
+    <Text h1 weight="bold" >
+      All Products
+    </Text>      
       <div>
         {loading ? (
             <Loading size="xl" />

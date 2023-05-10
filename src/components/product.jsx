@@ -30,7 +30,7 @@ const Product = (props) => {
                         <Text weight="bold">
                             ${props.data.price}
                         </Text>
-                            <Image
+                            <Image 
                                 width='100%' 
                                 src={props.data.image}
                                 alt="Product Image"

@@ -106,7 +106,7 @@ function App() {
             auto
             size="md"
             icon={<FaFacebook />}
-            onClick={() => {
+            onPress={() => {
               window.location.href = "http://facebook.com";
             }}
           />
