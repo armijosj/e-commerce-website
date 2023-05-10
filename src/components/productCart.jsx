@@ -8,6 +8,7 @@ import {
 	Input,
 	Image,
 	Row,
+	Container,
 } from "@nextui-org/react";
 
 const ProductCart = (props) => {
@@ -16,17 +17,21 @@ const ProductCart = (props) => {
 			<Row>
 				<Image
 					//css={{maxHeight:"20%", maxWidth:"20%"}}
-					width={"100px"}
+					width={"20%"}
 					src={props.data.product.image}
 					alt="Product Image"
-					objectFit="scale-down"
+					objectFit="fill"
 				/>
+				<Spacer y={5}/>
+				<Container justify="center" alignContent="center">
+					<Text >{props.data.product.title}</Text>
 
-				<Text css={{ bottom: "50%" }}>{props.data.product.title}</Text>
+					<Spacer x={2} />
 
-				<Spacer x={2} />
-
-				<Text b>${props.data.product.price}</Text>
+					<Text b>${props.data.product.price}</Text>
+				</Container>
+				
+				
 			</Row>
 		</div>
 	);

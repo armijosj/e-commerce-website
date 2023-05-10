@@ -9,6 +9,7 @@ import {
 	Grid,
 	Card,
 	Spacer,
+	Col,
 } from "@nextui-org/react";
 import { FaShoppingCart } from "react-icons/fa";
 import ProductDetail from "./productDetail";
@@ -101,38 +102,40 @@ const Cart = () => {
 						<Grid.Container gap={3} justify="center">
 							{myCart.map((prod) => (
 								<div key={prod.product.id}>
-									<Card key={prod.product.id}>
-										<ProductCart data={prod} />
-										<Row justify="flex-end">
-											<Input
-												width="25%"
-												aria-label="Qty"
-												labelLeft="Qty"
-												type="number"
-												initialValue={prod.quantity}
-												min={1}
-												onBlur={(e) =>
-													updateQuantity(
-														e.target.value,
-														prod.product.id
-													)
-												}
-											/>
-											<Spacer x={2} />
+									<Card key={prod.product.id} width="80%" css={{ p: "1%" }}>
+										<Col>
+											<ProductCart data={prod} />
+											<Row justify="flex-end" >
+												<Input
+													width="25%"
+													aria-label="Qty"
+													labelLeft="Qty"
+													type="number"
+													initialValue={prod.quantity}
+													min={1}
+													onBlur={(e) =>
+														updateQuantity(
+															e.target.value,
+															prod.product.id
+														)
+													}
+												/>
+												<Spacer x={2} />
 
-											<Button
-												color="error"
-												auto
-												flat
-												onPress={() => {
-													removeFromCart(
-														prod.product.id
-													);
-												}}
-											>
-												Remove
-											</Button>
-										</Row>
+												<Button
+													color="error"
+													auto
+													flat
+													onPress={() => {
+														removeFromCart(
+															prod.product.id
+														);
+													}}
+												>
+													Remove
+												</Button>
+											</Row>
+										</Col>
 									</Card>
 									<Spacer y={2} />
 								</div>
@@ -145,7 +148,10 @@ const Cart = () => {
 						Close
 					</Button>
 					<Button auto onPress={checkoutHandler}>
+						<Text b color="white" size={"$lg"}>
 						Checkout ${totalSum.toFixed(2)}
+
+						</Text>
 					</Button>
 
 					<Modal

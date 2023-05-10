@@ -62,7 +62,7 @@ const Home = () => {
 							tincidunt arcu non. Id leo in vitae turpis massa sed
 							elementum tempus. Sed arcu non odio euismod lacinia
 							at quis risus sed. Vel pharetra vel turpis nunc eget
-							lorem dolor sed.{" "}
+							lorem dolor sed.
 						</Text>
 					</Col>
 				</Card.Header>
