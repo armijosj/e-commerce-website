@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
 	Text,
-	Button,
-	Grid,
 	Card,
 	Spacer,
-	Input,
 	Image,
 	Row,
 } from "@nextui-org/react";
@@ -26,15 +23,12 @@ const ProductDetail = (props) => {
 					<Card.Header>
 						<Text h2>{props.data.title}</Text>
 					</Card.Header>
+					
 					<Card.Divider />
 
 					<Card.Body>
 						<Text color="grey">{props.data.category}</Text>
-
-						<Text h3 weight="bold">
-							${props.data.price}
-						</Text>
-
+						<Text h3 weight="bold">${props.data.price}</Text>
 						<Text>{props.data.description}</Text>
 					</Card.Body>
 

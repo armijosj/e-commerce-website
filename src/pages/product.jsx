@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-	Text,
-	Button,
-	Grid,
-	Card,
-	Spacer,
-	Input,
-	Image,
 	Loading,
 } from "@nextui-org/react";
 import { useSearchParams } from "react-router-dom";
@@ -16,7 +9,6 @@ import ProductDetail from "../components/productDetail";
 const Product = (props) => {
 	const [searchparams] = useSearchParams();
 	const [productId] = useState(searchparams.get("id"));
-
 	const [product, setProduct] = useState(null);
 	const [loading, setLoading] = useState(true);
 
@@ -24,6 +16,8 @@ const Product = (props) => {
 		fetchProducts();
 	}, [loading]);
 
+
+	// Fetch a specific product given the ID
 	const fetchProducts = async () => {
 		await axios
 			.get("https://fakestoreapi.com/products/" + productId.toString())

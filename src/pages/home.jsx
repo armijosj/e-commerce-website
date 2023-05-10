@@ -16,10 +16,12 @@ const Home = () => {
 	const [products, setProducts] = useState(null);
 	const [loading, setLoading] = useState(true);
 
+	// Rerender when finish loading
 	useEffect(() => {
 		fetchProducts();
 	}, [loading]);
 
+	// Fetch first 4 products
 	const fetchProducts = async () => {
 		await axios
 			.get("https://fakestoreapi.com/products?limit=4")

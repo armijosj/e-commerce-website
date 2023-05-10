@@ -12,8 +12,10 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import AddToCart from "./addToCart";
 
 const Product = (props) => {
+
 	const navigate = useNavigate();
 
+	// Go to detail product page by passing the query in the url
 	const productPage = (userId) => {
 		navigate({
 			pathname: "/product",

@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
 	Text,
-	Button,
-	Grid,
-	Card,
 	Spacer,
-	Input,
 	Image,
 	Row,
 	Container,
@@ -25,13 +21,9 @@ const ProductCart = (props) => {
 				<Spacer y={5}/>
 				<Container justify="center" alignContent="center">
 					<Text >{props.data.product.title}</Text>
-
 					<Spacer x={2} />
-
 					<Text b>${props.data.product.price}</Text>
 				</Container>
-				
-				
 			</Row>
 		</div>
 	);

@@ -11,6 +11,7 @@ const Listing = () => {
 		fetchProducts();
 	}, [loading]);
 
+	// Fetch all products
 	const fetchProducts = async () => {
 		await axios
 			.get("https://fakestoreapi.com/products")

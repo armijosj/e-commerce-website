@@ -1,25 +1,16 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
-	Navigate,
-	Link,
 } from "react-router-dom";
 import {
 	NextUIProvider,
 	Navbar,
-	Text,
-	Avatar,
-	Dropdown,
 	Button,
-	Grid,
 	Image,
 	Spacer,
-	Container,
 	Row,
 } from "@nextui-org/react";
 
@@ -34,6 +25,8 @@ function App() {
 	return (
 		<>
 			<NextUIProvider>
+
+				{/* Navbar */}
 				<Navbar
 					css={{ backgroundColor: "#0b16e0" }}
 					isBordered
@@ -75,6 +68,7 @@ function App() {
 					</Navbar.Content>
 				</Navbar>
 
+				{/* Routing */}
 				<Router>
 					<Routes>
 						<Route exact path="/" element={<Home />} />
@@ -84,6 +78,7 @@ function App() {
 				</Router>
 			</NextUIProvider>
 
+			{/* Social Media */}			
 			<footer>
 				<Spacer y={3} />
 				<div style={{ position: "absolute", bottom: 0, left: "43%" }}>

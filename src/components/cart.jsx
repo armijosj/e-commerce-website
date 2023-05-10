@@ -5,14 +5,12 @@ import {
 	Text,
 	Input,
 	Row,
-	Checkbox,
 	Grid,
 	Card,
 	Spacer,
 	Col,
 } from "@nextui-org/react";
 import { FaShoppingCart } from "react-icons/fa";
-import ProductDetail from "./productDetail";
 import ProductCart from "./productCart";
 
 const Cart = () => {
@@ -21,25 +19,26 @@ const Cart = () => {
 	const [totalSum, setSum] = React.useState(0);
 	const [checkout, setCheckout] = React.useState(false);
 
+	// Handler when the side cart opens
 	const handler = () => {
 		setVisible(true);
 		setCart(JSON.parse(localStorage.getItem("cart")));
-		if (myCart == null) {
-			localStorage.setItem("cart", JSON.stringify([]));
-		}
 	};
 
+	// Handler when the cart is closed. (not by checkout)
 	const closeHandler = () => {
 		setVisible(false);
 		setCheckout(false);
 	};
 
+	// Handler when user clicks on checkout.
 	const checkoutHandler = () => {
 		localStorage.setItem("cart", JSON.stringify([]));
 		setCart([]);
 		setCheckout(true);
 	};
 
+	// Remove item from cart and update UI
 	const removeFromCart = (elementId) => {
 		let oldCart = JSON.parse(localStorage.getItem("cart"));
 		const newCart = oldCart.filter(function (element) {
@@ -49,6 +48,7 @@ const Cart = () => {
 		setCart(newCart);
 	};
 
+	// Calculate the total sum when there is an update to myCart
 	const calcSum = () => {
 		let sum = Number(0);
 		let oldCart = JSON.parse(localStorage.getItem("cart"));
@@ -60,6 +60,7 @@ const Cart = () => {
 		setSum(sum);
 	};
 
+	// Update the quantity of a specific product
 	const updateQuantity = (value, elementId) => {
 		let oldCart = JSON.parse(localStorage.getItem("cart"));
 		oldCart.forEach((element) => {
@@ -70,6 +71,8 @@ const Cart = () => {
 		localStorage.setItem("cart", JSON.stringify([...oldCart]));
 		setCart(oldCart);
 	};
+
+	// Rerender when there is a state change to myCart
 	React.useEffect(() => {
 		if (JSON.parse(localStorage.getItem("cart")) == null) {
 			localStorage.setItem("cart", JSON.stringify([]));
