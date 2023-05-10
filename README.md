@@ -22,6 +22,7 @@ You can now access the app at: **http://localhost:5173/**
 or:
 ``` 
 npm install
+npm run build
 npm run preview
 ```
 
@@ -33,6 +34,7 @@ First run the application at **http://localhost:4173/** by running the following
 
 ``` 
 npm install
+npm run build
 npm run preview
 ```
 
