@@ -18,8 +18,6 @@ describe("App.js", () => {
     // await page.waitForSelector(".App-welcome-text");
     // const text = await page.$eval(".App-welcome-text", (e) => e.textContent);
 
-
-
     expect("Hello").toContain("Hello");
   });
   afterAll(() => browser.close());
